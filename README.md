@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# User Management Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React-based User Management Dashboard that allows users to view, add, edit, and delete user information. It includes various components, custom hooks, and Redux for state management. The dashboard is styled using Tailwind CSS and includes a confirmation modal for critical actions like deleting users.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- View a list of users.
+- Add, update, and delete user information.
+- Pagination for user list.
+- Modal confirmation for user deletion.
+- Custom form handling using React hooks.
+- Validation for user form inputs.
 
-### `npm start`
+## Components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Home** ✅: The main dashboard that displays the list of users and navigates to other sections.
+- **UserForm** ✅: A form to add or edit user details (name, email, etc.).
+- **UsersContainer** ✅: Displays a list of users and handles pagination.
+- **Loader** ✅: A spinner component to show loading state when fetching data.
+- **Pagination** ✅: A component for navigating through the list of users with page controls.
+- **FormInput** ✅: A reusable form input field component used in `UserForm` for different user details.
+- **UserCard** ✅: A card component for displaying individual user information with options to edit or delete.
+- **ConfirmationModal** ✅: A modal for confirming the deletion of a user.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Custom Hooks
 
-### `npm test`
+- **useForm** ✅: A custom hook to handle form state and validation logic for the user form.
+- **useModal** ✅: A custom hook for handling modal visibility (open/close) in the app.
+- **useUsersPagination** ✅: A custom hook to manage pagination logic for the users list.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Utilities
 
-### `npm run build`
+- **validateUserForm** ✅: A utility function to validate the user input fields in the form (using `validator` library).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Redux Store
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The app uses Redux for state management with `@reduxjs/toolkit` for better structure and simpler configuration.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Actions
 
-### `npm run eject`
+- **addUser**: Adds a new user to the list.
+- **deleteUser**: Deletes a user from the list after confirmation.
+- **updateUser**: Updates an existing user's details.
+- **fetchUsers**: Fetches the list of users from the API.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Reducers
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **usersList** ✅: Handles the state related to the users (loading, error, data).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Dependencies
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **react-router-dom**: For routing and navigation.
+- **validator**: For validating form inputs.
+- **react-toastify**: For displaying notifications like success or error messages.
+- **tailwind css**: For styling the components using utility-first CSS framework.
+- **react-spinners**: For loading spinners to indicate loading states.
+- **axios**: For making API calls.
+- **react-redux**: For state management using Redux.
+- **@reduxjs/toolkit**: For setting up Redux and handling actions/reducers in a more efficient way.
 
-## Learn More
+## Setup and Run Instructions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Prerequisites
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Make sure you have the following installed on your machine:
 
-### Code Splitting
+- [Node.js](https://nodejs.org/) (LTS version recommended)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) for package management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Installation
 
-### Analyzing the Bundle Size
+1. Clone the repository:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```bash
+   git clone https://github.com/Anjnaeyulu143/user-management-dashboard.git
+   cd user-management-dashboard
+   ```
 
-### Making a Progressive Web App
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Running the Project
 
-### Advanced Configuration
+To start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm start
+```
