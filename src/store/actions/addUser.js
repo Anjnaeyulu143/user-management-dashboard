@@ -16,7 +16,13 @@ export const asyncAddUser = (newUser) => async (dispatch, getState) => {
       newUserWithId
     );
 
-    dispatch(setUsersList([...getState().UsersList.usersList, newUserWithId]));
+    const updatedUsersList = [...getState().UsersList.usersList, newUserWithId];
+
+    // Save updated data to the localStorage
+
+    localStorage.setItem("usersList", JSON.stringify(updatedUsersList));
+
+    dispatch(setUsersList(updatedUsersList));
 
     // Show success toast
     toast.success("User added successfully!");

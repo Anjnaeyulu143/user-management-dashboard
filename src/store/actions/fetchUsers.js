@@ -5,27 +5,40 @@ import axios from "axios";
 
 const API_BASE_URL = "https://jsonplaceholder.typicode.com/users";
 
-export const asyncFetchUsers = () => async (dispatch, getState) => {
+export const asyncFetchUsers = () => async (dispatch) => {
   try {
-    const state = getState();
-    const usersList = state.UsersList.usersList;
+    // Retrieve the cached users list from localStorage
+    const cachedUsers = localStorage.getItem("usersList");
 
-    // Skip fetching if users list is already populated
-    if (usersList && usersList.length > 0) {
-      console.log("Users list already populated. Skipping fetch.");
-      dispatch(setUsersList(usersList));
-      return;
+    if (cachedUsers) {
+      try {
+        const parsedUsers = JSON.parse(cachedUsers);
+
+        // Checking if the data in localStorage is valid
+        if (Array.isArray(parsedUsers)) {
+          dispatch(setUsersList(parsedUsers));
+          return;
+        } else {
+          localStorage.removeItem("usersList");
+        }
+      } catch (err) {
+        localStorage.removeItem("usersList");
+      }
     }
 
-    dispatch(setIsFetching(true)); // Start fetching
+    // No valid cache found fetching users from the API
+    dispatch(setIsFetching(true));
 
     const response = await axios.get(API_BASE_URL);
+    const users = response.data;
 
-    // Dispatch to update state
-    dispatch(setUsersList(response.data));
+    // Saving users to localStorage and update Redux state
+    console.log("Fetched users from API.");
+    localStorage.setItem("usersList", JSON.stringify(users));
+    dispatch(setUsersList(users));
   } catch (err) {
     console.error("Error fetching users", err);
   } finally {
-    dispatch(setIsFetching(false)); // Finish fetching
+    dispatch(setIsFetching(false));
   }
 };

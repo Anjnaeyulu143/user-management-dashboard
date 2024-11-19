@@ -33,6 +33,10 @@ export const asyncUpdateUser =
         return user;
       });
 
+      // Save updated data to the localStorage
+
+      localStorage.setItem("usersList", JSON.stringify(updatedUsersList));
+
       // Dispatch the updated users list to the Redux store
       dispatch(setUsersList(updatedUsersList));
 

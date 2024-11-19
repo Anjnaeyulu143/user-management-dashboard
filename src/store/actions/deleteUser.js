@@ -13,9 +13,13 @@ export const asyncDeleteUser = (userId) => async (dispatch, getState) => {
 
     // Filter out the user to delete
 
-    const updatedUsers = usersList.filter((user) => user.id !== userId);
+    const updatedUsersList = usersList.filter((user) => user.id !== userId);
 
-    dispatch(setUsersList(updatedUsers));
+    // Save Updated data to the localStorage
+
+    localStorage.setItem("usersList", JSON.stringify(updatedUsersList));
+
+    dispatch(setUsersList(updatedUsersList));
   } catch (err) {
     console.error("Error deleting user:", err);
   } finally {
